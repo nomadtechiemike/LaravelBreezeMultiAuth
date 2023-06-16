@@ -4,7 +4,7 @@ A base app using Laravel 10, Breeze with Multi Auth Admin, User, Manager
 ## Laravel Breeze Multi Auth (Current: Laravel 10.*) 
 
 <br/>
-
+[![StyleCI](https://styleci.io/repos/30171828/shield?style=plastic)](https://github.styleci.io/repos/30171828)
 [![StyleCI](https://styleci.io/repos/654555298/shield?style=plastic)](https://github.styleci.io/repos/654555298)
 
 
