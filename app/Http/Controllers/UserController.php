@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 class UserController extends Controller
 {
-    public function AdminDashboard()
+    public function UserDashboard()
     {
 
         return view('user.index');

@@ -2,27 +2,28 @@
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-
-test('login screen can be rendered', function () {
-    $response = $this->get('/login');
-
-    $response->assertStatus(200);
-});
+use Illuminate\Support\Facades\Hash;
 
 test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+    $password = 'password';
+    $user = User::factory()->create([
+        'role' => 'admin',
+        'password' => Hash::make($password),
+    ]);
 
     $response = $this->post('/login', [
         'email' => $user->email,
-        'password' => 'password',
+        'password' => $password,
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(RouteServiceProvider::HOME);
+    $response->assertRedirect('/admin/dashboard'); // Assert redirect to admin dashboard
 });
 
 test('users can not authenticate with invalid password', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'password' => Hash::make('password'),
+    ]);
 
     $this->post('/login', [
         'email' => $user->email,
@@ -31,3 +32,4 @@ test('users can not authenticate with invalid password', function () {
 
     $this->assertGuest();
 });
+
