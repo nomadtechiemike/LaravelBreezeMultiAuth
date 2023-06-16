@@ -6,8 +6,8 @@ A base app using Laravel 10, Breeze with Multi Auth Admin, User, Manager
 <br/>
 [![StyleCI](https://styleci.io/repos/30171828/shield?style=plastic)](https://github.styleci.io/repos/30171828)
 [![StyleCI](https://styleci.io/repos/654555298/shield?style=plastic)](https://github.styleci.io/repos/654555298)
-
-
+<br/>>
+<a href="https://github.styleci.io/repos/654555298?branch=main"><img src="https://github.styleci.io/repos/654555298/shield?branch=main" alt="StyleCI"></a>
 ### Enjoying this project? [Buy me a beer 🍺](https://www.buymeacoffee.com/techiemikes)
 
 
