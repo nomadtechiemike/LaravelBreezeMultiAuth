@@ -59,4 +59,4 @@ Route::middleware(['auth', 'role:manager'])->group(
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
