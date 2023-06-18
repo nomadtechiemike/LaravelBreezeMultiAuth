@@ -13,12 +13,12 @@
                         </div>
                     </form> --}}
                     <ul class="navbar-nav">
-                               @php
-                                  $id = Auth::user()->id;
-                                  $profileData = App\Models\User::find($id);
-                                  
-                              @endphp
-          
+                        @php
+                            $id = Auth::user()->id;
+                            $profileData = App\Models\User::find($id);
+                            
+                        @endphp
+
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -175,33 +175,36 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30"
-                                    alt="profile">
+                                <img class="wd-40 ht-40 rounded-circle"
+                                    src="{{ !empty($profileData->photo) ? url('upload/avatar/' . $profileData->photo) : url('upload/no_image.jpg') }}"
+                                    alt="profile pic" />
                             </a>
                             <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
                                 <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                                     <div class="mb-3">
                                         <img class="wd-80 ht-80 rounded-circle"
-                                            src="https://via.placeholder.com/80x80" alt="">
+                                            src="{{ !empty($profileData->photo) ? url('upload/avatar/' . $profileData->photo) : url('upload/no_image.jpg') }}"
+                                            alt="profile pic" />
                                     </div>
                                     <div class="text-center">
                                         <div class="text-center">
-                                              <p class="tx-16 fw-bolder">{{ $profileData->name }}</p>
-                                              <p class="tx-12 text-muted">{{ $profileData->email }}</p>
-                                          </div>
+                                            <p class="tx-16 fw-bolder">{{ $profileData->name }}</p>
+                                            <p class="tx-12 text-muted">{{ $profileData->email }}</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <ul class="list-unstyled p-1">
                                     <li class="dropdown-item py-2">
-                                        <a href="pages/general/profile.html" class="text-body ms-0">
+                                        <a href="{{ route('profile') }}" class="text-body ms-0">
                                             <i class="me-2 icon-md" data-feather="user"></i>
-                                            <span>Profile</span>
+                                            <span>Edit Profile</span>
                                         </a>
                                     </li>
+
                                     <li class="dropdown-item py-2">
-                                        <a href="javascript:;" class="text-body ms-0">
+                                        <a href="{{ route('change.password') }}" class="text-body ms-0">
                                             <i class="me-2 icon-md" data-feather="edit"></i>
-                                            <span>Edit Profile</span>
+                                            <span>Change Password</span>
                                         </a>
                                     </li>
                                     <li class="dropdown-item py-2">
@@ -212,12 +215,12 @@
                                     </li>
                                     <li class="dropdown-item py-2">
                                         <form method="POST" action="{{ route('logout') }}">
-                                                  <i class="me-2 icon-md" data-feather="log-out"></i>
-                                                  @csrf
-                                                  <a href="#"
-                                                      onclick="event.preventDefault(); this.closest('form').submit();">Log
-                                                      Out</a>
-                                              </form>
+                                            <i class="me-2 icon-md" data-feather="log-out"></i>
+                                            @csrf
+                                            <a href="#"
+                                                onclick="event.preventDefault(); this.closest('form').submit();">Log
+                                                Out</a>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>

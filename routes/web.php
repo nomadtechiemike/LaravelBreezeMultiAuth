@@ -25,7 +25,9 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/change/password', [ProfileController::class, 'changePassword'])->name('change.password');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -34,17 +36,23 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(
     function () {
         Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+        Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+        Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
     }
 ); // end group admin
 
 Route::middleware(['auth', 'role:user'])->group(
     function () {
         Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
+        Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
+        Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
     }
-); // end group agent 
+); // end group user
 Route::middleware(['auth', 'role:manager'])->group(
     function () {
         Route::get('/manager/dashboard', [ManagerController::class, 'ManagerDashboard'])->name('manager.dashboard');
+        Route::post('/manager/profile/store', [ManagerController::class, 'ManagerProfileStore'])->name('manager.profile.store');
+        Route::post('/manager/update/password', [ManagerController::class, 'ManagerUpdatePassword'])->name('manager.update.password');
     }
 );
 // Logout Route
