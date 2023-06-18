@@ -36,8 +36,8 @@ class UserTableSeeder extends Seeder
                 'password' => Hash::make('Password!'),
                 'role' => 'manager',
                 'status' => 'active',
-                
-            ]
+
+            ],
 
         ]);
     }

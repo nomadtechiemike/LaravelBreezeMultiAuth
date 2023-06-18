@@ -31,4 +31,3 @@ test('users can not authenticate with invalid password', function () {
 
     $this->assertGuest();
 });
-
