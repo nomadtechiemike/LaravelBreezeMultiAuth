@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public function UserDashboard()
@@ -31,22 +30,22 @@ class UserController extends Controller
         $data->phone = $request->phone;
         $data->address = $request->address;
 
-        if (!empty($request->file('photo'))) {
+        if (! empty($request->file('photo'))) {
             $file = $request->file('photo');
-            @unlink(public_path('upload/avatar/' . $data->photo));
+            @unlink(public_path('upload/avatar/'.$data->photo));
             $ext = $request->file('photo')->getClientOriginalExtension();
-            $randomStr = date('Ymdhis') . Str::random(20);
-            $filename = strtolower($randomStr) . '.' . $ext;
+            $randomStr = date('Ymdhis').Str::random(20);
+            $filename = strtolower($randomStr).'.'.$ext;
             $file->move(public_path('upload/avatar'), $filename);
             $data->photo = $filename;
         }
 
         $data->save();
 
-        $notify = array(
+        $notify = [
             'message' => 'User Profile Updated',
             'alert-type' => 'success'
-        );
+        ];
 
         return redirect()->back()->with($notify);
     }
