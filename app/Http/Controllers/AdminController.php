@@ -33,17 +33,17 @@ class AdminController extends Controller
         dd('Inside AdminChangePassword()');
         $id = Auth::user()->id;
         $profileData = User::find($id);
+
         return view('admin.change_password', ['profileData' => $profileData]);
 
     }
 
     public function AdminUpdatePassword(Request $request)
     {
-
         $request->validate([
             'old_password' => 'required',
 
-            'new_password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols()]
+            'new_password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols()],
 
         ]);
 
@@ -55,13 +55,15 @@ class AdminController extends Controller
 
             return redirect()->back()->with($notify);
         }
-        User::whereId(auth()->user()->id)->update([        
+
+        User::whereId(auth()->user()->id)->update([       
             'password' => Hash::make($request->new_password),
         ]);
         $notify = [
             'message' => 'Password successfully update!',
             'alert-type' => 'success',
         ];
+        
         return redirect()->back()->with($notify);
     }
 

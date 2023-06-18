@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
 class ManagerController extends Controller
 {
     public function ManagerDashboard()
@@ -44,7 +45,7 @@ class ManagerController extends Controller
 
         $notify = [
             'message' => 'Manager Profile Updated',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         ];
 
         return redirect()->back()->with($notify);

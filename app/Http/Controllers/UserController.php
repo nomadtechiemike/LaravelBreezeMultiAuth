@@ -6,19 +6,21 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
 class UserController extends Controller
 {
     public function UserDashboard()
     {
         return view('user.index');
     }
+
     public function UserProfile()
     {
         $id = Auth::user()->id;
         $profileData = User::find($id);
+
         return view('user.profile_view', compact('profileData'));
     }
-
 
     public function UserProfileStore(Request $request)
     {
@@ -44,7 +46,7 @@ class UserController extends Controller
 
         $notify = [
             'message' => 'User Profile Updated',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         ];
 
         return redirect()->back()->with($notify);

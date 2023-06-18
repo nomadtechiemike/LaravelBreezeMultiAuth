@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+
 class ProfileController extends Controller
 {
-
     public function index()
     {
         $user = Auth::user();
@@ -31,16 +31,17 @@ class ProfileController extends Controller
                 abort(403); // Handle unauthorized access or fallback behavior
         }
     }
-    public function chatify()
-    {
-        $user = Auth::user();
 
-        // Get the necessary data for Chatify
-        // $threads = ChatifyMessenger::getThreads($user->id);
-        // $contacts = ChatifyMessenger::getContacts($user->id);
+    // public function chatify()
+    // {
+    //     $user = Auth::user();
 
-        return view('chatify', compact('threads', 'contacts'));
-    }
+    //     // Get the necessary data for Chatify
+    //     // $threads = ChatifyMessenger::getThreads($user->id);
+    //     // $contacts = ChatifyMessenger::getContacts($user->id);
+
+    //     return view('chatify', compact('threads', 'contacts'));
+    // }
     public function changePassword()
     {
         if (request()->isMethod('post')) {
@@ -66,7 +67,6 @@ class ProfileController extends Controller
             }
         }
     }
-
 
     /**
      * Display the user's profile form.
