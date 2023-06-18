@@ -55,8 +55,7 @@ class AdminController extends Controller
 
             return redirect()->back()->with($notify);
         }
-
-        
+       
         User::whereId(auth()->user()->id)->update([       
             'password' => Hash::make($request->new_password),
         ]);
