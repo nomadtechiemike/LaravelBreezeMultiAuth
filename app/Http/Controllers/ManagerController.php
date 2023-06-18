@@ -18,6 +18,7 @@ class ManagerController extends Controller
     {
         $id = Auth::user()->id;
         $profileData = User::find();
+        
         return view('manager.profile_view', compact('profileData'));
     }
 
