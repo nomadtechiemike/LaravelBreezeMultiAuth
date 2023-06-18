@@ -1,8 +1,8 @@
 php:
-  risky: false
+  risky: true
   version: 8.2
   preset: laravel
- enabled:
+  enabled:
     - ternary_to_elvis_operator
   disabled:
     - single_import_per_statement
