@@ -35,7 +35,6 @@ class AdminController extends Controller
         $profileData = User::find($id);
 
         return view('admin.change_password', ['profileData' => $profileData]);
-
     }
 
     public function AdminUpdatePassword(Request $request)
@@ -55,8 +54,8 @@ class AdminController extends Controller
 
             return redirect()->back()->with($notify);
         }
-       
-        User::whereId(auth()->user()->id)->update([       
+        
+        User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password),
         ]);
         $notify = [
