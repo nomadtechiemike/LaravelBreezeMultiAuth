@@ -35,7 +35,7 @@ class ManagerController extends Controller
             $file = $request->file('photo');
             @unlink(public_path('upload/avatar/'.$data->photo));
             $ext = $request->file('photo')->getClientOriginalExtension();
-            $randomStr = date('Ymdhis') . Str::random(20);
+            $randomStr = date('Ymdhis').Str::random(20);
             $filename = strtolower($randomStr).'.'.$ext;
             $file->move(public_path('upload/avatar'), $filename);
             $data->photo = $filename;
