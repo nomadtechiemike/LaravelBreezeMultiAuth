@@ -1,22 +1,17 @@
-php:
-  risky: true
-  version: 8.2
-  preset: laravel
-  enabled:
-    - ternary_to_elvis_operator
-  disabled:
-    - single_import_per_statement
-  monolithic: true
-  finder:
-    exclude:
-      - "modules"
-      - "node_modules"
-      - "nova"
-      - "nova-components"
-      - "storage"
-      - "spark"
-      - "vendor"
-    name: "*.php"
-    not-name:
-      - "*.blade.php"
-      - "_ide_helper.php"
+risky: false
+version: 8.2
+preset: laravel
+monolithic: true
+finder:
+  exclude:
+    - "modules"
+    - "node_modules"
+    - "nova"
+    - "nova-components"
+    - "storage"
+    - "spark"
+    - "vendor"
+  name: "*.php"
+  not-name:
+    - "*.blade.php"
+    - "_ide_helper.php"
