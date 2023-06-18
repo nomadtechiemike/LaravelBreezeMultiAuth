@@ -30,11 +30,17 @@ class AuthenticatedSessionController extends Controller
 
         $url = '';
         if ($request->user()->role == 'admin') {
-            $url = '/admin/dashboard';    
+
+            $url = '/admin/dashboard';
+
         } elseif ($request->user()->role == 'user') {
+            
             $url = '/user/dashboard';
+            
         } elseif ($request->user()->role == 'manager') {
+            
             $url = '/manager/dashboard';
+            
         }
         $notify = [
             'message' => 'You\'re Loged in!  ⚡️',

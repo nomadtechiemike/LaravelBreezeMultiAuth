@@ -56,6 +56,7 @@ class AdminController extends Controller
             return redirect()->back()->with($notify);
         }
 
+        
         User::whereId(auth()->user()->id)->update([       
             'password' => Hash::make($request->new_password),
         ]);
@@ -63,7 +64,7 @@ class AdminController extends Controller
             'message' => 'Password successfully update!',
             'alert-type' => 'success',
         ];
-        
+
         return redirect()->back()->with($notify);
     }
 
@@ -91,7 +92,7 @@ class AdminController extends Controller
 
         $notify = [
             'message' => 'Admin Profile Updated',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         ];
 
         return redirect()->back()->with($notify);
