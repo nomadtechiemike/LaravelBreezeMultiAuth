@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +61,4 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-
-
-require __DIR__ . '/auth.php';
+    require __DIR__ . '/auth.php';

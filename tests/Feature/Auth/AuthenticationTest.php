@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Hash;
 
 test('users can authenticate using the login screen', function () {

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Str;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 
 
@@ -16,17 +15,19 @@ class AdminController extends Controller
 {
     public function AdminDashboard()
     {
-        
+
         return view('admin.index');
     }
-public function AdminChat(){
-        return view('admin.admin_chat');
-}
+    // public function AdminChat()
+    // {
+    //     return view('admin.admin_chat');
+    // }
     public function AdminProfile()
     {
         $id = Auth::user()->id;
         $profileData = User::find($id);
-        
+
+
         return view('admin.profile_view', compact('profileData'));
     }
 
@@ -44,12 +45,12 @@ public function AdminChat(){
 
         $request->validate([
             'old_password' => 'required',
+
             'new_password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()->mixedCase()->symbols()->uncompromised()]
-            
 
         ]);
 
-        if (!Hash::check($request->old_password, auth::user()->password)) {
+        if (! Hash::check($request->old_password, auth::user()->password)) {
             $notify = [
                 'message' => 'Old password does not match!',
                 'alert-type' => 'error'
@@ -76,7 +77,7 @@ public function AdminChat(){
         $data->phone = $request->phone;
         $data->address = $request->address;
 
-        if (!empty($request->file('photo'))) {
+        if (! empty($request->file('photo'))) {
             $file = $request->file('photo');
             @unlink(public_path('upload/avatar/' . $data->photo));
             $ext = $request->file('photo')->getClientOriginalExtension();
